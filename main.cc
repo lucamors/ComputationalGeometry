@@ -3,8 +3,8 @@
 #include <random>
 #include <fstream>
 #include <chrono>
-#include "cg.hh"
-#include "Vector2D.hh"
+#include "include/algorithm/ConvexHull.hh"
+#include "include/basic/Vector2D.hh"
 
 int main(int argc, char* argv[]){
     
@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
         std::cout << "Error. No input provided.\n";
         return 1;
     }
-
+    
     const int N = std::stoi(argv[1]);
 
     if(N == 1){
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]){
     using std::chrono::milliseconds;
 
     auto t1 = high_resolution_clock::now();
-    cg::ConvexHull(vertices, convex_hull_vertices, cg::CHTYPE::GRAHAM);
+    cg::algorithm::ConvexHull(vertices, convex_hull_vertices, cg::algorithm::CHTYPE::GRAHAM);
     auto t2 = high_resolution_clock::now();
 
     /* Getting number of milliseconds as an integer. */
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]){
     /* Getting number of milliseconds as a double. */
     duration<double, std::milli> ms_double = t2 - t1;
 
-    std::cout << "-> " << ms_double.count()  << "ms" << std::endl;
+    std::cout << " -> " << ms_double.count()  << "ms" << std::endl;
 
     std::ofstream of("of.csv");
     of << "x,y\n";

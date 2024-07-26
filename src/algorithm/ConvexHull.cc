@@ -1,10 +1,13 @@
-#include "cg.hh"
-#include "edge.hh"
+#include "algorithm/ConvexHull.hh"
+#include "basic/edge.hh"
+#include "basic/Vector2D.hh"
 #include <algorithm>
 #include <vector>
 #include <iostream>
 
 namespace cg{
+
+namespace algorithm{
 
 
 void ConvexHull(const std::vector<Vector2D>& set_of_points, 
@@ -236,6 +239,8 @@ bool check_for_right_turn(const std::vector<Vector2D>& ps){
 
     // Return true if the cross product is negative (right turn)
     return cross_product < 0;
+}
+
 }
 
 }

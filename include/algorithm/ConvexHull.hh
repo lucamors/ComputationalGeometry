@@ -1,28 +1,34 @@
-#ifndef CG_HH
-#define CG_HH
+#ifndef CONVEX_HULL_HH
+#define CONVEX_HULL_HH
 
 #include <vector>
-#include "Vector2D.hh"
+#include "basic/Vector2D.hh"
 
 
 namespace cg{
+
+namespace algorithm{
 
 enum class CHTYPE { SLOW, GRAHAM, JARVIS };
 
 void ConvexHull(const std::vector<Vector2D>& set_of_points, std::vector<Vector2D>& convex_hull_vertices, CHTYPE implementation );
 
 /*
-Slow Convex Hull Implementation
-
-Described in Chapter I of "Computational Geometry".
+@brief Slow Convex Hull Implementation
+Described in Chapter I of "Computational Geometry : Algorithms & Applications" de Berg et al.
 It has a time complexity of O(n^3)
+
+@params set_of_points
+
+@params convex_hull_vertices
+
 */
 void SlowConvexHull(const std::vector<Vector2D>& set_of_points, std::vector<Vector2D>& convex_hull_vertices);
 
 /*
 Graham Scan Implementation
 
-Described in Chapter I of "Computational Geometry".
+Described in Chapter I of "Computational Geometry : Algorithms & Applications" de Berg et al.
 It has a time complexity of O(n log(n) )
 */
 void GrahamScanCH(const std::vector<Vector2D>& set_of_points, std::vector<Vector2D>& convex_hull_vertices);
@@ -47,6 +53,9 @@ It evaluates the sign of the z-componenet of the cross-product of P_21 x P_31
 where the two Vector2D are extended to 3D with 0 as z-component
 */
 bool check_for_right_turn(const std::vector<Vector2D>& ps);
+
+
+}
 
 }
 

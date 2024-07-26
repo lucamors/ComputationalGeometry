@@ -1,19 +1,16 @@
-cmake_minimum_required(VERSION 3.12)
-project(CG)
+cmake_minimum_required(VERSION 3.10)
+project(cglib)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Find SDL2 package
-# find_package(SDL2 REQUIRED)
-
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-#----------------------------------------------------------------------------
-# Locate sources and headers for this project
-# NB: headers are included so they will show up in IDEs
-#
-file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
-file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
+# Add subdirectories
+add_subdirectory(src)
 
-add_executable(${PROJECT_NAME} main.cc ${sources} ${headers})
+# Add the main executable
+add_executable(cgm main.cc)
+
+# Link the main executable with the libraries
+target_link_libraries(cgm cglib)
