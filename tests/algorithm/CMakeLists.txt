@@ -7,4 +7,4 @@ target_link_libraries(ConvexHull_test
   GTest::GTest
   cglib)
 
-add_test(AlgorithmTest ConvexHull_test)
+add_test(ConvexHullTest ConvexHull_test)

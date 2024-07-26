@@ -1,11 +1,33 @@
-#include "algorithm/ConvexHull.hh"
+#include <algorithm/ConvexHull.hh>
+#include <basic/Vector2D.hh>
+#include <vector>
+#include <algorithm>
 #include <gtest/gtest.h>
 
-TEST(AlgorithmTest, ConvexHull_test)
+TEST(ConvexHullTest, input_vector_with_low_dimension)
 {
-    const auto expected = 1;
-    const auto actual = 1;
-    ASSERT_EQ(expected, actual);
+    std::vector<Vector2D> vertices = { 
+        { 2, 1 },
+        { 5, 2 },
+        { 2, 5 },
+        { 3, 3 },
+    };
+
+    std::vector<Vector2D> convex_hull_vertices;
+    cg::algorithm::ConvexHull(vertices, convex_hull_vertices, cg::algorithm::CHTYPE::GRAHAM);
+
+    // Sort output array
+    std::sort(convex_hull_vertices.begin(), convex_hull_vertices.end(),Vector2D::lexographycal_sort);
+
+    // Declare and sort expected array
+    std::vector<Vector2D> expected = { 
+        { 2, 1 },
+        { 5, 2 },
+        { 2, 5 },
+    };
+    std::sort(expected.begin(), expected.end(),Vector2D::lexographycal_sort);
+
+    ASSERT_EQ(convex_hull_vertices, expected);
 }
 
 int main(int argc, char** argv)
