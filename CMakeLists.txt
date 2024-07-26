@@ -1,16 +1,13 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.29)
 project(cglib)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+enable_testing()
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-# Add subdirectories
 add_subdirectory(src)
-
-# Add the main executable
-add_executable(cgm main.cc)
-
-# Link the main executable with the libraries
-target_link_libraries(cgm cglib)
+add_subdirectory(tests)
