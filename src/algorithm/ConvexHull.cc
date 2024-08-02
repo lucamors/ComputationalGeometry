@@ -9,7 +9,6 @@ namespace cg{
 
 namespace algorithm{
 
-
 void ConvexHull(const std::vector<Vector2D>& set_of_points, 
                 std::vector<Vector2D>& convex_hull_vertices, 
                 CHTYPE implementation ){
@@ -116,7 +115,7 @@ void GrahamScanCH(const std::vector<Vector2D>& set_of_points,
     std::vector<Vector2D> points = set_of_points;
 
     // Lexicographycally Sort points
-    sort(points.begin(), points.end(), Vector2D::lexographycal_sort);
+    std::sort(points.begin(), points.end(), Vector2D::lexographycal_sort);
 
     // Compute the upper hull
     std::vector<Vector2D> l_upper;
@@ -176,6 +175,12 @@ void JarvisMarch(const std::vector<Vector2D>& set_of_points, std::vector<Vector2
 
     // Copying input array
     const unsigned points_size = set_of_points.size();
+
+    if(points_size == 0){
+        // return some kind of error
+        return ;
+    }
+
     std::vector<Vector2D> points = set_of_points;
 
     // Find leftmost index O(n)
